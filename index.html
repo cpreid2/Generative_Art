@@ -35,8 +35,8 @@
 			
 		var xincrement = 0;
 		var yincrement = 0;
-		for (var i = 0; i < Num_Boxes_Len*2; i++){
-		for (var j = 0; j < Num_Boxes_Len*2; j++){
+		for (var i = 0; i < Num_Boxes_Len*3; i++){
+		for (var j = 0; j < Num_Boxes_Len*3; j++){
 			
 			var material = new THREE.MeshBasicMaterial({color:'rgba(' + [255,Math.floor(Math.random()*255),Math.floor(Math.random()*255),Math.random()].join(',') + ')'});
 			var cube = new THREE.Mesh(geometry,material)
