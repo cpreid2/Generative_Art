@@ -29,9 +29,15 @@
 		var Num_Boxes_Len = Math.ceil(window.innerWidth / Square_Len);
 			
 		var geometry = new THREE.BoxGeometry(Square_Len,Square_Len,Square_Len);
-			
-		var startx = -window.innerWidth*2+25;
-		var starty = -window.innerHeigh*2+25;
+		
+		var startx = -window.innerWidth/1+25;
+		var starty = -window.innerHeight/1+25;
+		
+		if (aspect < 1){
+		var startx = -window.innerWidth/0.75+25;
+		var starty = -window.innerHeight/1+25;
+		}
+		
 			
 		var xincrement = 0;
 		var yincrement = 0;
