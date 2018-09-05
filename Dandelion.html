@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-color: #ffffff;
+				margin: 0;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+		<script>
+		function getRandomArbitrary(min, max) {
+		  return Math.random() * (max - min) + min;
+		}
+        // create a scene, that will hold all our elements such as objects, cameras and lights.
+        scene = new THREE.Scene();
+
+        // create a camera, which defines where we're looking at.
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        // create a render, sets the background color and the size
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor('lightgray', 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // position and point the camera to the center of the scene
+        camera.position.z = 100;
+
+        // add the output of the renderer to the html element
+        document.body.appendChild(renderer.domElement);
+
+        var numPoints = 10;
+        var start = new THREE.Vector3(0, 0, 0);
+        var middle = new THREE.Vector3(0, -5, 0);
+        var end = new THREE.Vector3(0, -10, 0);
+
+        var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
+
+        var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.4, 20, false);
+        var mesh = new THREE.Mesh(tube, new THREE.MeshBasicMaterial({opacity: 0.5,transparent: true}));
+			
+		scene.add(mesh);
+			
+		for (var i = 0; i < 50; i ++){
+        var numPoints = 10;
+        var start = new THREE.Vector3(0, 0, 0);
+        var middle = new THREE.Vector3(getRandomArbitrary(-2, 0), 5, 0);
+        var end = new THREE.Vector3(0, 10, 0);
+
+        var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
+
+        var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.1, 20, false);
+        var mesh = new THREE.Mesh(tube, new THREE.MeshBasicMaterial({
+            opacity: 0.9,
+            transparent: true
+        }));
+		mesh.rotation.z = Math.PI * (getRandomArbitrary(0, 0.4));
+		mesh.rotation.y = 2 * Math.PI * (getRandomArbitrary(0, 1));
+		scene.add(mesh);
+		}
+		var render = function () {
+	  	requestAnimationFrame( render );
+			
+		scene.rotation.z += 0.005;
+		scene.rotation.x += 0.005;
+	  	renderer.render( scene, camera );
+	};
+
+	render();
+
+		</script>
+	</body>
+</html>
