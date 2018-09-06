@@ -18,34 +18,27 @@
 		}
         // create a scene, that will hold all our elements such as objects, cameras and lights.
         scene = new THREE.Scene();
-
         // create a camera, which defines where we're looking at.
         camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-
         // create a render, sets the background color and the size
         renderer = new THREE.WebGLRenderer();
         renderer.setClearColor('lightgray', 1.0);
         renderer.setSize(window.innerWidth, window.innerHeight);
-
         // position and point the camera to the center of the scene
-        camera.position.z = 200;
-
+        camera.position.z = 250;
         // add the output of the renderer to the html element
         document.body.appendChild(renderer.domElement);
 		dandelions = new THREE.Object3D();//create an empty container
-		for (j = 0; j<1; j++){
+		for (j = 0; j<40; j++){
 		dandelion = new THREE.Object3D();//create an empty container
-
 		var stemlength = -15;
-			
+		
 		// add the stem
         var numPoints = 10;
         var start = new THREE.Vector3(0, 0.1, 0);
         var middle = new THREE.Vector3(0, stemlength/2, 0);
         var end = new THREE.Vector3(0, stemlength, 0);
-
         var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
-
         var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.2, 20, false);
         var mesh = new THREE.Mesh(tube, new THREE.MeshBasicMaterial({opacity: 0.2,transparent: true, color: '#A0522D'}));
 		dandelion.add(mesh);
@@ -53,9 +46,7 @@
         var start = new THREE.Vector3(0, stemlength+1, 0);
         var middle = new THREE.Vector3(0, stemlength+0.5, 0);
         var end = new THREE.Vector3(0, stemlength, 0);
-
         var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
-
         var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.3, 20, false);
         var mesh = new THREE.Mesh(tube, new THREE.MeshBasicMaterial({opacity: 0.5,transparent: true, color: '#A0522D'}));
 		dandelion.add(mesh);
@@ -65,11 +56,9 @@
         var start = new THREE.Vector3(0, 0, 0);
         var middle = new THREE.Vector3(getRandomArbitrary(-2, 0), 5, 0);
         var end = new THREE.Vector3(0, 10, 0);
-
         var curveQuad = new THREE.QuadraticBezierCurve3(start, middle, end);
-
         var tube = new THREE.TubeGeometry(curveQuad, numPoints, 0.1, 20, false);
-		
+	
         var mesh = new THREE.Mesh(tube, new THREE.MeshBasicMaterial({
             opacity: 0.9,
             transparent: true
@@ -87,28 +76,24 @@
 			var yrot = getRandomArbitrary(0, 90);
 			var xrot = getRandomArbitrary(-180, 180)
 			
-			var phi   = (90-yrot)*(Math.PI/180);
+			var phi   = (125-yrot)*(Math.PI/180);
 			var theta = (xrot+180)*(Math.PI/180);
-			var radius = 40;
+			var radius = 75;
 			
-			dandelions.children[k].position.x = -((radius) * Math.sin(phi)*Math.cos(theta)),
-			dandelions.children[k].position.z = ((radius) * Math.sin(phi)*Math.sin(theta)),
+			dandelions.children[k].position.x = ((radius) * Math.sin(phi)*Math.cos(theta));
+			dandelions.children[k].position.z = ((radius) * Math.sin(phi)*Math.sin(theta));
 			dandelions.children[k].position.y = ((radius) * Math.cos(phi));
 		
 		}
-
 		}
 		var render = function () {
 	  	requestAnimationFrame( render );
 			
-	scene.rotation.y +=0.005
-
+	scene.rotation.y +=0.0025
 		
 	  	renderer.render( scene, camera );
 	};
-
 	render();
-
 		</script>
 	</body>
 </html>
