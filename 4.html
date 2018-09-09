@@ -1,0 +1,44 @@
+function gaussianRand() {
+  var rand = 0;
+
+  for (var i = 0; i < 6; i += 1) {
+    rand += Math.random();
+  }
+
+  return rand / 6;
+}
+
+function randomcircle(x,y,radius,spread, density,colorinner,colorouter){
+push()
+  var from = color(colorinner)
+  var to = color(colorouter)
+
+  translate(x,y)
+  
+  for (i = 0 ; i < density; i++){
+    for (angle = 0; angle < 360; angle++){
+      var randomnum = gaussianRand()
+      var circlecolor = lerpColor(from, to, randomnum);
+      noStroke()
+      fill(circlecolor)
+      ellipse(0,radius + randomnum *spread,2)
+      rotate(angle)
+     }
+    }
+  pop()
+}
+
+
+function setup() {
+createCanvas(1000, 1000);
+  var c1 = color(232, 207, 22)
+  var c2 = color(21, 103, 147)
+  var c3 = color(209, 63, 122)
+randomcircle(1000/2,1000/2,50,100,15,c1,'rgb(255,255,255)')
+randomcircle(1000/2,1000/2,150,100,15,c2,'rgb(255,255,255)')
+randomcircle(1000/2,1000/2,250,100,15,c3,'rgb(255,255,255)')
+}
+
+function draw() {
+
+}
