@@ -1,31 +1,35 @@
-var a = 10;
-var r = 0.5;
+function circle_lines(radius,linerot, linelen){
+
+for (i = 0;i<360;i++){
+push()
+rotate(i/360*TWO_PI)
+line(random()*radius*linerot,0+radius,0,linelen)
+pop()
+}
+}
+
 function setup() {
-  createCanvas(windowHeight, windowWidth);
-  background(255);
+var dimension = 1000
+createCanvas(dimension, dimension);
+background(0)
+
+translate(dimension/2,dimension/2)
+stroke(255)
+strokeWeight(0.2)
+circle_lines(12.5,1.9,12.5)
+strokeWeight(0.6)
+circle_lines(25,-1.9,25)
+strokeWeight(0.7)
+circle_lines(50,1.9,50)
+strokeWeight(0.8)
+circle_lines(100,-1.80,100)
+strokeWeight(1)
+circle_lines(200,1.79
+,200)
+strokeWeight(1)
+circle_lines(400,-1.8,400)
 }
 
 function draw() {
 
-	var x = r * cos(a);
-  var y = r * sin(a);
-
-  a += 0.1;
-  r += 0.3;
-  fill(254,74,73,100)
-  
-  var circlesize = x/100+a/8
-  push();
-  translate(width / 2, height / 2);
-  noStroke()
-  fill(223, 227, 238,100)
-	ellipse(x, y, circlesize, circlesize);
-  fill(139, 157, 195,100)
-  ellipse(x/4, y, circlesize, circlesize);
-
-    fill(59, 89, 152,150)
-  ellipse(x, y/3, circlesize, circlesize);
-  pop();
-    
-  
 }
