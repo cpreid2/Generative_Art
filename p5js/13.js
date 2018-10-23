@@ -1,69 +1,85 @@
-var circles;
 
-
-class Circle {
-  constructor(x,y,r) {
+class line_circle{
+	constructor(x,y,r,strips) {
     this.x = x;
     this.y = y;
     this.r = r;
+    this.strips = strips;
   }
  
   display() {
-    ellipse(this.x,this.y,this.r)
+    for (var i = 0; i < this.strips; i ++){
+	var x2 = this.r/this.strips * i
+	var y2 = Math.sqrt(Math.pow(this.r, 2) - Math.pow(x2, 2))
+	
+	if (i == 0){
+	line(this.x + x2, this.y - y2, this.x + x2, this.y + y2) 
+	}else{
+	line(this.x + x2, this.y - y2, this.x + x2, this.y + y2) 
+	line(this.x - x2, this.y - y2, this.x - x2, this.y + y2) 
+	}
+	}
+	
+	var x2 = this.r - this.r/this.strips /5
+	var y2 = Math.sqrt(Math.pow(this.r, 2) - Math.pow(x2, 2))
+	
+	line(this.x - x2, this.y - y2, this.x - x2, this.y + y2)
+	line(this.x + x2, this.y - y2, this.x + x2, this.y + y2)
+	
   }
-  
+
+
 }
 
+function colorPicker(){
+c1 = color(246, 118, 94)
+c2 = color(246, 172, 94)
+c3 = color(63, 131, 154)
+c4 = color(69, 180, 107)
+
+var randomNum = Math.random()
+
+if (randomNum <0.25){
+linecolor = c1
+} else if (randomNum <0.50 && randomNum > 0.25){
+linecolor = c2
+} else if (randomNum <0.75 && randomNum > 0.50){
+linecolor = c3
+} else{
+linecolor = c4
+}
+return linecolor
+}
 
 function setup() {
 	var lengthcanvas = 1000
 	var widthcanvas = 1000
-	var strip_length = 100
-	
 	
 	createCanvas(lengthcanvas, widthcanvas);
-	background(100)
-	fill(0)
+	background(150)
+	stroke(color(246, 118, 94))
 	
-	for (var j = 50; j < lengthcanvas-50; j = j + strip_length){
-	fill(255)
-	strokeWeight(1.7)
-	circles = []
-	var x1 = 50
-	var x2 = 950
-	var y1 = j
-	var y2 = strip_length + j -10
 	
-	for (var numcircles = 0; numcircles < 500*j/25; numcircles ++){
-    
-	var circle_r = 1.1 + j / 200
-	var center_x = map(Math.random(),0,1,x1-circle_r,x2-circle_r)
-	var center_y = map(Math.random(),0,1,y1-circle_r,y2-circle_r)
-	
-	circle = new Circle(center_x, center_y, circle_r);
-	
-    // test if circle doesn't overlap
-    var valid = true
-    
-    for (var i = 0; i < circles.length; i++){
-    
-       var circ = circles[i];
-       var d = dist(center_x, center_y, circ.x, circ.y);
-
-       if (d < 2 * circ.r) {
-       valid = false
-       break;
-       }
-    }
-
-    if (valid){
-      circles.push(circle);
-      circle.display()
-    }
+	for (j = 0; j < 750; j ++){
+	var randomx = Math.random();
+	var randomy = Math.random();
+	var randomh = Math.random();
+	var randomstrips = Math.random();
+	strokeWeight(3 * Math.random())
+	stroke(colorPicker())
+	if (Math.random() > 0.25){
+	circle = new line_circle(1500*randomx, 1500*randomy, 125* randomh,Math.floor(30*randomstrips));
+	rotate(15)
+	circle.display()
+	} else{
+	noStroke()
+	fill(colorPicker())
+	ellipse(1500*randomx,1500*randomy,125* randomh)
 	
 	}
-	} 
-save('myImage.jpg');
+	
+	}
+	save('myImage.jpg');
 }
 
 function draw() {
