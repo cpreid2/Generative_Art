@@ -20,7 +20,7 @@ Point.prototype.halfway = function (other) {
 
 Point.prototype.randomdist = function (other) {
   var distance = this.distance(other);
-  var randomvar = map(Math.random(),0,1,0.3,0.8)
+  var randomvar = map(Math.random(),0,1,0.3,0.7)
   return new Point(
     this.x - (distance.x * randomvar),
     this.y - (distance.y * randomvar)
@@ -46,23 +46,19 @@ return DrawSubTriangles([point4, point5, point6])
 }
 var points = []
 
-function splitTriangle(Points){
+function splitTriangle(Points,packing){
 
-	if (Points.length >256){
-	fill(255-(i / Points.length)*255, 0, 128);
-		return
-		
-	}else{
+	
 	
 	New_Points = []
 	
 	for (i = 0; i < Points.length; i++){
 		newpoint = Points[i][0].randomdist(Points[i][1])
-		noStroke()
+		
 		beginShape(TRIANGLES)
-		fill(255-(i/1.3 / Points.length)*255, 0, 128);
-		//fill(Math.floor(map(Math.random(),0,1,0.6,0.9)*255))
-		vertex(Points[i][0].x,Points[i][0].y)
+		noStroke()
+		//fill(255-(i/1.2 / Points.length)*255, 0, 128);
+		fill(Math.floor(map(Math.random(),0,1,0.6,0.9)*255),180,180)
 		vertex(Points[i][1].x,Points[i][1].y)
 		vertex(Points[i][2].x,Points[i][2].y)
 		vertex(newpoint.x,newpoint.y)
@@ -70,8 +66,11 @@ function splitTriangle(Points){
 		New_Points.push([Points[i][1],Points[i][2],newpoint],[Points[i][0],Points[i][2],newpoint])
 		}
 
-
-	return splitTriangle(New_Points)
+	if (Points.length > packing){
+		return
+		
+	}else{
+	return splitTriangle(New_Points,packing)
 	}	
 }
 
@@ -80,31 +79,41 @@ function setup() {
 	var widthcanvas = 1000
 	
 	createCanvas(lengthcanvas, widthcanvas);
-	background(150)
-	strokeWeight(0.2)
+	background(255)
 
-	point1 = new Point(0,0)
-	point2 = new Point(1000,0)
-	point3 = new Point(0,1000)
-	point4 = new Point(1000,1000)
+for (var j = 50; j < 950; j = j + 100){
+
+	point1 = new Point(50,j)
+	point2 = new Point(950,j)
+	point3 = new Point(50,j+100)
+	point4 = new Point(950,j+100)
 	
 	Points = [[point1, point2, point3]]
-	Points2 = [[point2, point3, point4]]
-	fill(255-(Points.length)*255, 0, 128);
+
+	noStroke()
+	//fill(255-(Points.length*-1)*255, 0, 128);
+	fill(Math.floor(map(Math.random(),0,1,0.6,0.9)*255),180,180)
 	beginShape(TRIANGLES)
 	vertex(point1.x,point1.y)
 	vertex(point2.x,point2.y)
-	vertex(point3.x,point3.y)	
+	vertex(point3.x,point3.y)
 	endShape(CLOSE)
 	
-	splitTriangle(Points)
-	splitTriangle(Points2)
+	splitTriangle(Points,Math.floor(j/8))
+	
+	Points2 = [[point2, point3, point4]]
+	//fill(255-(Points.length*-1)*255, 0, 128);
+	fill(Math.floor(map(Math.random(),0,1,0.6,0.9)*255),180,180)
+	beginShape(TRIANGLES)
+	vertex(point4.x,point4.y)
+	vertex(point2.x,point2.y)
+	vertex(point3.x,point3.y)
+	endShape(CLOSE)
+	splitTriangle(Points2,Math.floor(j/8))
 	//triangle(point1.x, point1.y, point2.x, point2.y, point3.x, point3.y)
 	//New_Coords = DrawSubTriangles(Points)
 	
-	
-
-	
+	}
 
 save('myImage.jpg');
 }
