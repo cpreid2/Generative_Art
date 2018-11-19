@@ -2,6 +2,21 @@ var noise_t = 0.004;
 var lengthcanvas = 500
 var widthcanvas = 500
 
+class bubble(){
+constructor (x, y,r){
+this.x = x
+this.y = y
+this.r = r
+}
+
+display(){
+ellipse(this.x, this.y, this.r)
+
+}
+
+
+}
+
 function calculateField(columns, rows, noiseZ) {
   field = new Array()
   for(let x = 0; x < columns; x++) {
