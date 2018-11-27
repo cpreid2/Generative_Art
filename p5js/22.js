@@ -1,5 +1,5 @@
   function preload() {
-  img = loadImage("https://scontent-ort2-2.xx.fbcdn.net/v/t1.0-9/11219434_768156156622605_1626346366045884567_n.jpg?_nc_cat=106&_nc_ht=scontent-ort2-2.xx&oh=4b9e38138b8160b571e0055b91d7c4bc&oe=5C7F2E07"); 
+  img = loadImage("http://localhost:8000/Downloads/DSCF0282.jpg"); 
   
 }
 
@@ -17,16 +17,16 @@ function one_or_zero(){
 
 random_num = Math.random()
 
-number = '0'
+number = 'Gabriel'
 
 if (random_num > 0.5){
-number = '1'
+number = 'gabriel'
 }
 return number
 }
 
 function setup() {
-	
+  img.resize(img.width/4,img.height/4)
   createCanvas(img.width, img.height);
   pixelDensity(1)
   background(10)
@@ -62,15 +62,12 @@ function setup() {
     a = img.pixels[index + 3]
     
     brightness = (r + g + b) / 3;
-    fill(0, 143, 17)
-    stroke(0, 59, 0)
-    textSize(2 + 8*brightness/120)
+    fill(206, 17, 38)
+    textSize(2 + 8*brightness/200)
     text(one_or_zero(),x,y)
     
     }
 	}
-
-save('Me3.jpg')
 	
 }
 function draw() {
