@@ -79,4 +79,7 @@ function draw() {
 
       }
     }
+    if (keyIsPressed && key == 's') {
+    save('IMAGE.jpg')
+    }
   }
