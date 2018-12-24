@@ -1,7 +1,7 @@
 var t = 0.1
 
 function preload() {
-  img = loadImage("http://0.0.0.0:8000/Downloads/IMG_6610.JPG");
+  img = loadImage("http://0.0.0.0:8000/colin/Downloads/IMG_6606.JPG");
 
 }
 
@@ -14,7 +14,7 @@ function setup() {
   loadPixels()
 
   points = []
-  for (i = 0; i < 20000; i++){
+  for (i = 0; i < 2000; i++){
 
     x = Math.random()*img.width
     y = Math.random()*img.height
