@@ -37,7 +37,7 @@ class triangle_circle {
       }
       stroke(0)
       strokeWeight(1.4)
-      fill(floor(map(Math.random(),0,1,0,255)), 0, 0,80)
+      fill(floor(map(Math.random(),0,1,0,255)), 0, 0,100)
       beginShape()
       vertex(triangle_points[0][0], triangle_points[0][1])
       vertex(triangle_points[1][0], triangle_points[1][1])
@@ -58,7 +58,7 @@ function setup() {
   for (var i = 0; i < 1000; i++) {
     var center_x = Math.random()*1000
     var center_y = Math.random()*1000
-    triangle = new triangle_circle(center_x, center_y, map(Math.random(),0,1,25,150), floor(map(Math.random(),0,1,10,50)));
+    triangle = new triangle_circle(center_x, center_y, map(Math.random(),0,1,25,150), floor(map(Math.random(),0,1,15,50)));
     triangle.createPoints()
   }
 }
