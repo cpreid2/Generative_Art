@@ -2,7 +2,7 @@ var t = 0.1
 var nOff = 0
 var scribbleSize = 20
 function preload() {
-  img = loadImage("https://c2.staticflickr.com/6/5558/15004940512_9490b4f0df_b.jpg");
+  img = loadImage("https://c1.staticflickr.com/5/4887/45709750961_583648cc9b_b.jpg");
 
 }
 

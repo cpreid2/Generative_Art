@@ -1,10 +1,24 @@
 
 function preload() {
-  img = loadImage("https://c2.staticflickr.com/6/5632/29895745533_50ed3ec7aa_b.jpg");
+
+  img = new MarvinImage();
+  img.load("https://c2.staticflickr.com/6/5632/29895745533_50ed3ec7aa_b.jpg", imageLoaded);
+  console.log(img)
+}
+
+function imageLoaded(){
+var imageOut = new MarvinImage(image.getWidth(), image.getHeight());
+
+// Edge Detection (Prewitt approach)
+Marvin.prewitt(image, imageOut);
+// Invert color
+Marvin.invertColors(imageOut, imageOut);
+// Threshold
+Marvin.thresholding(imageOut, imageOut, 220);
+
 }
 
 function setup() {
-  img.resize(img.width, img.height)
   createCanvas(img.width, img.height);
   pixelDensity(1)
   background(230,230,230)
