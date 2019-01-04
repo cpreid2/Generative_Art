@@ -2,13 +2,13 @@ var raw;
 var processed;
 var images;
 var nOff = 0
-var curveSize = 35
+var curveSize = 50
 
 var w;
 var h;
 
 function preload() {
-img = loadImage('https://c2.staticflickr.com/6/5558/15004940512_9490b4f0df_b.jpg')
+img = loadImage('https://www.nasa.gov/sites/default/files/thumbnails/image/32109555763_eb9bb215ef_k.jpg')
 raw = img
 }
 
@@ -19,7 +19,7 @@ function setup() {
 
   createCanvas(img.width, img.height)
 
-  background(233,233,233)
+  background(30,30,30)
   textSize(16)
   fill(255)
   do_grey();
@@ -55,10 +55,11 @@ function setup() {
       brightness = (r + b + g) / 3;
       //fill(r_raw,b_raw,g_raw,15)
       stroke(r_raw,b_raw,g_raw,50)
+      strokeWeight(2)
       //noStroke()
-      if (brightness > 35){
+      if (brightness < 30){
         beginShape()
-        for ( lines = 0 ; lines < floor(Math.random()*25); lines++){
+        for ( lines = 0 ; lines < floor(Math.random()*200); lines++){
           curveVertex(x + map(Math.random(),0,1,-curveSize,curveSize), y+map(Math.random(),0,1,-curveSize,curveSize))
           //ellipse(x,y,brightness/6)
         }
