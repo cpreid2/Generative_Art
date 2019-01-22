@@ -1,7 +1,7 @@
 var t = 0.1
 
 function preload() {
-  img = loadImage("http://0.0.0.0:8000/GAMAY%20FIRST%20CHOICE.jpeg");
+  img = loadImage("http://0.0.0.0:8000/GAMAY.jpg");
 
 }
 
