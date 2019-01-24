@@ -1,7 +1,7 @@
 var t = 0.1
 
 function preload() {
-  img = loadImage("http://0.0.0.0:8000/GAMAY%20FIRST%20CHOICE.jpeg");
+  img = loadImage("http://0.0.0.0:8000/GAMAYCOLOR.jpg");
 
 }
 
@@ -37,11 +37,10 @@ function setup() {
     curveVertex(x+Math.random()*scalex,y+Math.random()*scaley)
     endShape()
     strokeWeight(9*Math.random())
-    stroke(r,b,g,a/(4*map(Math.random(),0,1,0.2,0.6)))
+    stroke(r,b,g,a/(5*map(Math.random(),0,1,0.2,0.6)))
     line(x+Math.random()*40,y,x+scalex,y+scaley*Math.random())
   }
-
-save("GAMAY.jpg")
+save('GAMAY.jpg')
 }
 
 
